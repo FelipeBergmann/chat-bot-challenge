@@ -1,0 +1,147 @@
+﻿@page "/chatroom"
+
+@using Chatbot.App.Domain.Hubs
+@using Chatbot.App.Factory
+@using Chatbot.App.Models
+@using Microsoft.AspNetCore.SignalR.Client;
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@using Chatbot.App.Infrastructure.Hubs;
+@using Chatbot.App.Configuration;
+@using Microsoft.Extensions.Options;
+@using System.Globalization
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager navigationManager
+@inject IChatRoomHubConnectionService _hubConnectionService;
+@inject IOptionsSnapshot<ChatServerConfiguration> _serverConfiguration;
+
+@implements IDisposable
+
+<h1>Welcome to the chat room!</h1>
+<hr />
+
+
+<AuthorizeView>
+    <NotAuthorized>
+        <p>Please login first</p>
+    </NotAuthorized>
+    <Authorized>
+        <div class="alert alert-secondary mt-4" role="alert">
+            <span class="oi oi-person mr-2" aria-hidden="true"></span>
+            <span>You are connected as <b>@_username</b></span>
+            <button class="btn btn-sm btn-warning ml-md-auto" @onclick="@DisconnectAsync">Disconnect</button>
+        </div>
+
+        <div id="scrollbox">
+            @foreach (var item in _messages)
+            {
+                @if (item.IsNotice)
+                {
+                    <div class="alert alert-info">@item.Body</div>
+                }
+                else
+                {
+                    <div class="@item.CSS">
+                        <div class="user">@item.Username</div>
+                        <div class="msg">@item.Body</div>
+                    </div>
+                }
+            }
+            <hr />
+            <textarea class="input-lg" placeholder="enter your comment" @bind="@_newMessage"></textarea>
+            <button class="btn btn-default" @onclick="@(() => SendAsync(_newMessage))">Send</button>
+            <p>Total messages: @_messages.Count()</p>
+            <input placeholder="Max messages on chat" @bind="@_maxChatMessages" />
+        </div>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        if (await IsAuthenticated())
+        {
+            await InitializeChat();
+        }
+    }
+
+    private async Task<bool> IsAuthenticated()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        return authState.User == null ? false : authState.User.Identity.IsAuthenticated;
+    }
+
+    private int? _maxChatMessages = 50;
+    private bool _isChatting = false;
+    private string _username;
+    private string _message;
+    private string _newMessage;
+    private string _hubUrl;
+    private List<Message> _messages = new List<Message>();
+
+    public async Task InitializeChat()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        _username = authState.User.Identity?.Name ?? "Not Configured";
+
+        try
+        {
+            _messages.Clear();
+            _hubUrl = _serverConfiguration.Value.Url;
+
+            await _hubConnectionService
+                    .SetHubUrl(_hubUrl)
+                    .SetUserName(_username)
+                    .ConfigureOnBroadcastMessage(BroadcastMessage)
+                    .StartAsync();
+
+            _isChatting = true;
+        }
+        catch (Exception e)
+        {
+            _message = $"ERROR: Failed to start chat client: {e.Message}";
+            _isChatting = false;
+        }
+    }
+
+    private void BroadcastMessage(string name, string message)
+    {
+        DateTime sentAtConverted = DateTime.Now;
+        var messageModel = MessageFactory.CreateMessage(name, message, _username, sentAtConverted);
+
+        _messages.Add(messageModel);
+
+        if (_messages.Count > _maxChatMessages)
+        {
+            _messages.RemoveAt(0);
+        }
+
+        // Inform blazor the UI needs updating
+        StateHasChanged();
+    }
+
+    private async Task DisconnectAsync()
+    {
+        if (_isChatting)
+        {
+            await _hubConnectionService.DisconnectAsync();
+            _isChatting = false;
+        }
+    }
+
+    private async Task SendAsync(string message)
+    {
+        if (_isChatting && !string.IsNullOrWhiteSpace(message))
+        {
+            await _hubConnectionService.BroadCastMessage(message);
+
+            _newMessage = string.Empty;
+        }
+    }
+
+    public void Dispose()
+    {
+        Task.WhenAny(DisconnectAsync());
+    }
+}

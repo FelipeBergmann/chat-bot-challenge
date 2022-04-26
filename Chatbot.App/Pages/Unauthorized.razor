@@ -1,0 +1,8 @@
+﻿@inject NavigationManager navigationManager;
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        navigationManager.NavigateTo("Identity/Account/Login", true);
+    }
+}

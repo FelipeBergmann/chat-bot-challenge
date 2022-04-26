@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatbot.Api", "Chatbot.Api\Chatbot.Api.csproj", "{2EDC42BC-6889-4585-ADA5-0B42AA21CAD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{B0E81B6B-8E20-4B5F-985F-3657DFF9F1FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{840E2552-4CDF-4367-9DB3-4439D8B89B7B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatbot.App", "Chatbot.App\Chatbot.App.csproj", "{7C67AEB8-ABFF-4314-BF6C-67A37944CE17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Domain", "1. Domain", "{2BC557B3-E66D-4AB0-B619-1503B71A06E7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatbot.Chat.Domain", "Chatbot.Chat.Domain\Chatbot.Chat.Domain.csproj", "{CAD231CE-FEA2-4B7F-8257-BB817FAFBE55}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Infrastructure", "2. Infrastructure", "{86C2B63D-88D9-4506-AB69-3E80192A0502}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatbot.App.Infrastructure", "Chatbot.App.Infrastructure\Chatbot.App.Infrastructure.csproj", "{56344846-E9E7-48DC-93CC-15314693C071}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Server", "3. Server", "{26BEE22B-5661-4112-9E9C-F3373CD7E5CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Client", "4. Client", "{59E2D9E2-1EEA-43DD-9BB1-7457FBC911C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Test", "5. Test", "{BA4AB020-2FAA-4473-83CB-57262D412770}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockMarket.Bot", "StockMarket.Bot\StockMarket.Bot.csproj", "{013166A8-36ED-4A68-B2F5-C98649284F87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.App.Infrastructure.IoC", "Chatbot.App.Infrastructure.IoC\Chatbot.App.Infrastructure.IoC.csproj", "{DA102B36-0AD1-4D06-8B96-F8C13B5492F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2EDC42BC-6889-4585-ADA5-0B42AA21CAD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EDC42BC-6889-4585-ADA5-0B42AA21CAD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EDC42BC-6889-4585-ADA5-0B42AA21CAD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EDC42BC-6889-4585-ADA5-0B42AA21CAD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C67AEB8-ABFF-4314-BF6C-67A37944CE17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C67AEB8-ABFF-4314-BF6C-67A37944CE17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C67AEB8-ABFF-4314-BF6C-67A37944CE17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C67AEB8-ABFF-4314-BF6C-67A37944CE17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAD231CE-FEA2-4B7F-8257-BB817FAFBE55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAD231CE-FEA2-4B7F-8257-BB817FAFBE55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAD231CE-FEA2-4B7F-8257-BB817FAFBE55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAD231CE-FEA2-4B7F-8257-BB817FAFBE55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56344846-E9E7-48DC-93CC-15314693C071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56344846-E9E7-48DC-93CC-15314693C071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56344846-E9E7-48DC-93CC-15314693C071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56344846-E9E7-48DC-93CC-15314693C071}.Release|Any CPU.Build.0 = Release|Any CPU
+		{013166A8-36ED-4A68-B2F5-C98649284F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{013166A8-36ED-4A68-B2F5-C98649284F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{013166A8-36ED-4A68-B2F5-C98649284F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{013166A8-36ED-4A68-B2F5-C98649284F87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA102B36-0AD1-4D06-8B96-F8C13B5492F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA102B36-0AD1-4D06-8B96-F8C13B5492F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA102B36-0AD1-4D06-8B96-F8C13B5492F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA102B36-0AD1-4D06-8B96-F8C13B5492F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2EDC42BC-6889-4585-ADA5-0B42AA21CAD7} = {26BEE22B-5661-4112-9E9C-F3373CD7E5CC}
+		{B0E81B6B-8E20-4B5F-985F-3657DFF9F1FF} = {59E2D9E2-1EEA-43DD-9BB1-7457FBC911C5}
+		{840E2552-4CDF-4367-9DB3-4439D8B89B7B} = {59E2D9E2-1EEA-43DD-9BB1-7457FBC911C5}
+		{7C67AEB8-ABFF-4314-BF6C-67A37944CE17} = {B0E81B6B-8E20-4B5F-985F-3657DFF9F1FF}
+		{CAD231CE-FEA2-4B7F-8257-BB817FAFBE55} = {2BC557B3-E66D-4AB0-B619-1503B71A06E7}
+		{56344846-E9E7-48DC-93CC-15314693C071} = {86C2B63D-88D9-4506-AB69-3E80192A0502}
+		{013166A8-36ED-4A68-B2F5-C98649284F87} = {840E2552-4CDF-4367-9DB3-4439D8B89B7B}
+		{DA102B36-0AD1-4D06-8B96-F8C13B5492F5} = {86C2B63D-88D9-4506-AB69-3E80192A0502}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD3C3672-1819-4C02-A6B0-E7C51A8900EB}
+	EndGlobalSection
+EndGlobal
